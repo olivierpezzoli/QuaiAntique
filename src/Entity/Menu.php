@@ -19,13 +19,14 @@ class Menu
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?float $price = null;
+    #[ORM\Column(type: 'decimal', precision: 8, scale: 2)]
+    private ?string $price = null;
 
     #[ORM\Column]
     private ?bool $isPublish = null;
 
     #[ORM\ManyToOne(inversedBy: 'menus')]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?Photo $photo = null;
 
     public function getId(): ?int
@@ -57,14 +58,14 @@ class Menu
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): ?string
     {
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(float|string $price): static
     {
-        $this->price = $price;
+        $this->price = (string) $price;
 
         return $this;
     }

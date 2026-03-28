@@ -40,13 +40,17 @@ class OpeningHoursRepository extends ServiceEntityRepository
         }
     }
 
-    public function getByDateTime(\DateTime $d) {
+    public function getByDateTime(\DateTime $d): ?OpeningHours
+    {
+        $dateTime = LocalDateTime::fromNativeDateTime($d);
+        $dayName = $dateTime->getDayOfWeek()->__toString();
+
         $openHours = $this->findAll();
-        $d = LocalDateTime::fromNativeDateTime($d);
-        $r = array_filter($openHours, function($val) use ($d) {
-            return $val->GetDay()->name === $d->getDayOfWeek()->__toString();
+        $filtered = array_filter($openHours, function($val) use ($dayName) {
+            return $val->getDay()->name === $dayName;
         });
-        $r = reset($r);
-        return $r;
+        $result = reset($filtered);
+
+        return $result ?: null;
     }
 }

@@ -45,7 +45,7 @@ class ReservationType extends AbstractType
                     'class' => 'reservation',
                 ],
                 'constraints' => [
-                    new Regex('/[a-zA-Z]+$/', 'Vous ne pouvez utiliser que les lettres de A à Z en minuscule et majuscule'),
+                    new Regex('/^[\p{L}\s\'-]+$/u', 'Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes'),
                     new Length([
                         'max' => 50,
                         'maxMessage' => 'Vous ne pouvez pas utiliser plus de 50 caractères'
@@ -58,7 +58,7 @@ class ReservationType extends AbstractType
                     'class' => 'reservation',
                 ],
                 'constraints' => [
-                    new Regex('/[0-9]+$/', 'Vous ne pouvez utiliser des chiffres'),
+                    new \Symfony\Component\Validator\Constraints\Range(['min' => 1, 'max' => 20, 'notInRangeMessage' => 'Le nombre de places doit être entre {{ min }} et {{ max }}']),
                 ],
             ])
             ->add('allergy', TextType::class,[
@@ -67,7 +67,7 @@ class ReservationType extends AbstractType
                     'class' => 'reservation',
                 ],
                 'constraints' => [
-                    new Regex('/[a-zA-Z]+$/', 'Vous ne pouvez utiliser que les lettres de A à Z en minuscule et majuscule'),
+                    new Regex('/^[\p{L}\s,\'-]+$/u', 'Les allergies ne peuvent contenir que des lettres, espaces, virgules, tirets et apostrophes'),
                     new Length([
                         'max' => 100,
                         'maxMessage' => 'Vous ne pouvez pas utiliser plus de 100 caractères'

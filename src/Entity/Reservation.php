@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Reservation
 {
     #[ORM\Id]
@@ -77,7 +78,7 @@ class Reservation
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->createdAt = new \DateTimeImmutable("now");
+        return $this->createdAt;
     }
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
@@ -85,6 +86,14 @@ class Reservation
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function onPrePersist(): void
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
     }
 
     public function getLastName(): ?string

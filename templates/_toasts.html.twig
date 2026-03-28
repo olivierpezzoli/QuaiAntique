@@ -1,7 +1,8 @@
 {% for label, messages in app.flashes %}
     {% for message in messages %}
+        {% set bg_class = label == 'error' ? 'bg-danger' : (label == 'warning' ? 'bg-warning' : 'bg-success') %}
         <div class="container-xl my-2 mx-auto justify-content-center row text-center ">
-            <div class="toast w-100 mx-auto align-items-center text-white bg-success border-0" role="alert" id="liveToast"  aria-live="assertive" aria-atomic="true">
+            <div class="toast w-100 mx-auto align-items-center text-white {{ bg_class }} border-0" role="alert" id="liveToast"  aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">
                     <div class="toast-body">
                         {{ message }}

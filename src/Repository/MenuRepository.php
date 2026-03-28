@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Menu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -40,32 +39,13 @@ class MenuRepository extends ServiceEntityRepository
         }
     }
 
-    public function getMenuQueryBuilder(): QueryBuilder
+    public function getAllActiveMenu(): array
     {
-        return $this->createQueryBuilder('menu');
-    }
-
-    public function filterActive($queryBuilder, $activeValue): QueryBuilder {
-        return $queryBuilder
-            ->andWhere('menu.isPublish = :activeValue')
-            ->setParameter('activeValue', $activeValue);
-    }
-
-    public function addOrderAsc($queryBuilder): QueryBuilder {
-        return $queryBuilder
-            ->orderBy('menu.name', 'ASC');
-    }
-
-    public function executeQuery($queryBuilder): array {
-        return $queryBuilder
+        return $this->createQueryBuilder('menu')
+            ->andWhere('menu.isPublish = :active')
+            ->setParameter('active', true)
+            ->orderBy('menu.name', 'ASC')
             ->getQuery()
             ->getResult();
-    }
-
-    public function getAllActiveMenu(): array {
-        $qb = $this->getMenuQueryBuilder();
-        $qb = $this->filterActive($qb, true);
-        $qb = $this->addOrderAsc($qb);
-        return $this->executeQuery($qb);
     }
 }

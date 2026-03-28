@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Dish;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -40,36 +39,13 @@ class DishRepository extends ServiceEntityRepository
         }
     }
 
-    public function getDishQueryBuilder(): QueryBuilder
-    {
-        return $this->createQueryBuilder('dish');
-    }
-
-    public function filterPublishedDish($queryBuilder, $activeValue): QueryBuilder
-    {
-        return $queryBuilder
-            ->andWhere('dish.isPublish = :activeValue')
-            ->setParameter('activeValue', $activeValue);
-    }
-
-    public function addOrderByNameAsc($querybuilder): QueryBuilder
-    {
-        return $querybuilder
-            ->orderBy('dish.name', 'ASC');
-    }
-
-    public function executeQuery($queryBuilder): array
-    {
-        return $queryBuilder
-            ->getQuery()
-            ->getResult();
-    }
-
     public function getAllActiveDish(): array
     {
-        $qb = $this->getDishQueryBuilder();
-        $qb = $this->filterPublishedDish($qb, true);
-        $qb = $this->addOrderByNameAsc($qb);
-        return $this->executeQuery($qb);
+        return $this->createQueryBuilder('dish')
+            ->andWhere('dish.isPublish = :active')
+            ->setParameter('active', true)
+            ->orderBy('dish.name', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

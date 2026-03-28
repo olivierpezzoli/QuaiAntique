@@ -45,25 +45,8 @@ class ReservationRepository extends ServiceEntityRepository
         }
     }
 
-    public function getDays(\DateTimeImmutable $dateNow, \DateTime $dateReservation)
-    {
-        $qb = $this->getEntityManager()->createQueryBuilder()
-            ->select('c')
-            ->from('ProjectBundle:Calendar', 'c')
-            ->where('c.date BETWEEN :firstDate AND :lastDate')
-            ->setParameter('firstDate', $dateNow)
-            ->setParameter('lastDate', $dateReservation)
-        ;
-
-        $result = $qb->getQuery()->getResult();
-        var_dump('data results : ', $result);
-        return $result;
-    }
-
     public function selectAll(): QueryBuilder {
-        return $this->getEntityManager()->createQueryBuilder()
-            ->select('r')
-            ->from('App:Reservation', 'r');
+        return $this->createQueryBuilder('r');
     }
 
     public function getByDateAndService(\DateTime $dateReservation, OpeningHours $oh) {

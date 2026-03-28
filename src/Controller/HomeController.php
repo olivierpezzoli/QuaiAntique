@@ -21,9 +21,9 @@ use App\Repository\UserRepository;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(PhotoRepository $PhotoRepository): Response
+    public function index(PhotoRepository $photoRepository): Response
     {
-        $photos = $PhotoRepository->findAll();
+        $photos = $photoRepository->findAll();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'photos' => $photos,

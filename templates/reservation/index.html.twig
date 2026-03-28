@@ -24,17 +24,17 @@
     {% include "_toasts.html.twig" %}
         <div class="row text-center">
             <b class="col-12 m-1">{{ form_label(reservationForm.lastName, 'Nom de famille') }}</b>
-            <div class="col-12 m-1 mb-3">{{ form_widget(reservationForm.lastName, {'id': 'form-res-date-field'}) }}</div>
+            <div class="col-12 m-1 mb-3">{{ form_widget(reservationForm.lastName, {'id': 'form-res-lastname-field'}) }}</div>
             <div>{{ form_errors(reservationForm.lastName) }}</div>
         </div>
         <div class="row text-center">
             <b class="col-12 m-1">{{ form_label(reservationForm.nbPlaces, 'Nombre de couverts') }}</b>
-            <div class="col-12 m-1 mb-3">{{ form_widget(reservationForm.nbPlaces, {'id': 'form-res-date-field'}) }}</div>
+            <div class="col-12 m-1 mb-3">{{ form_widget(reservationForm.nbPlaces, {'id': 'form-res-nbplaces-field'}) }}</div>
             <div>{{ form_errors(reservationForm.nbPlaces) }}</div>
         </div>
         <div class="row text-center">
             <b class="col-12 m-1">{{ form_label(reservationForm.allergy, 'Allergies') }}</b>
-            <div class="col-12 m-1 mb-3">{{ form_widget(reservationForm.allergy, {'id': 'form-res-date-field'}) }}</div>
+            <div class="col-12 m-1 mb-3">{{ form_widget(reservationForm.allergy, {'id': 'form-res-allergy-field'}) }}</div>
             <div>{{ form_errors(reservationForm.allergy) }}</div>
         </div>
     {% if is_granted('ROLE_USER') %}

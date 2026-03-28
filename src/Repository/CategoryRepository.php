@@ -39,8 +39,4 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAllCategory()
-    {
-        return $this->findAll();
-    }
 }

@@ -5,9 +5,6 @@ namespace App\Entity;
 use App\Repository\OpeningHoursRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Response;
-use function PHPUnit\Framework\isFalse;
 
 #[ORM\Entity(repositoryClass: OpeningHoursRepository::class)]
 class OpeningHours

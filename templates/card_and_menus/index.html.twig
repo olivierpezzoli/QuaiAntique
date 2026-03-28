@@ -15,11 +15,11 @@
                              src="{{ asset('pictures/photos/' ~ menu.photo.picture ) }}"
                              data-src="{{ asset('pictures/photos/' ~ menu.photo.picture ) }}"
                              data-toggle="lightbox"
-                             alt=""
+                             alt="{{ menu.name }}"
                         >
                     </div>
                     <div class="col-9 col-lg-2 my-auto px-1 text-decoration-underline"><b>{{ menu.name }}</b></div>
-                    <div class="col-3 col-lg-1 my-auto px-1 order-lg-last text-lg-end">{{ (menu.price/100)|format_currency('EUR')}}</div>
+                    <div class="col-3 col-lg-1 my-auto px-1 order-lg-last text-lg-end">{{ menu.price|format_currency('EUR')}}</div>
                     <div class="col-12 col-lg-7 py-2 my-auto px-1"><i>{{ menu.description}}</i></div>
                 </div>
                 <hr class="my-1">
@@ -40,11 +40,11 @@
                                      src="{{ asset('pictures/photos/' ~ dish.photo.picture ) }}"
                                      data-src="{{ asset('pictures/photos/' ~ dish.photo.picture ) }}"
                                      data-toggle="lightbox"
-                                     alt=""
+                                     alt="{{ dish.name }}"
                                 >
                             </div>
                             <div class="col-9 col-lg-2 my-auto px-1 text-decoration-underline"><b>{{ dish.name }}</b></div>
-                            <div class="col-3 col-lg-1 my-auto px-1 order-lg-last text-lg-end">{{ (dish.price/100)|format_currency('EUR')}}</div>
+                            <div class="col-3 col-lg-1 my-auto px-1 order-lg-last text-lg-end">{{ dish.price|format_currency('EUR')}}</div>
                             <div class="col-12 col-lg-7 py-2 my-auto px-1"><i>{{ dish.description}}</i></div>
                         </div>
                         <hr class="my-2">

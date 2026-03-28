@@ -14,8 +14,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
-use function PHPUnit\Framework\isFalse;
-
 
 class OpeningHoursCrudController extends AbstractCrudController
 {

@@ -7,11 +7,11 @@ class WelcomeModel
 
 
 
-    private ?string $email;
+    private ?string $email = null;
 
-    private ?string $password;
+    private ?string $password = null;
 
-    private ?string $lastName;
+    private ?string $lastName = null;
 
     /**
      * @return string|null

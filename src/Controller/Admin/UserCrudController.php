@@ -32,7 +32,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('email', 'Email'),
             TextField::new('lastName', 'Nom de famille'),
             TextField::new('firstName', 'Prénom'),
-            IntegerField::new('phoneNumber', 'Numéro de téléphone'),
+            TextField::new('phoneNumber', 'Numéro de téléphone'),
             DateField::new('birthday', 'Date de naissance')
         ];
     }
